@@ -11,10 +11,7 @@ class Map extends Component {
         this.state = {
             app_id: props.app_id,
             app_code: props.app_code,
-            center: {
-                lat: props.latitude,
-                lng: props.longitude,
-            },
+            center: props.center,
             zoom: props.zoom,
         }
     }
@@ -23,22 +20,30 @@ class Map extends Component {
         this.platform = new window.H.service.Platform(this.state);
 
         var layer = this.platform.createDefaultLayers();
-        var container = document.getElementById("map");
+        var container = document.getElementById('map');
+
+
 
         this.map = new window.H.Map(container, layer.normal.map, {
             center: this.state.center,
             zoom: this.state.zoom,
-        })
+        });
 
         var events = new window.H.mapevents.MapEvents(this.map);
+        // eslint-disable-next-line
         var behavior = new window.H.mapevents.Behavior(events);
-        var ui = new window.H.ui.UI.createDefault(this.map, layer);
+        // eslint-disable-next-line
+        var ui = new window.H.ui.UI.createDefault(this.map, layer)
     }
 
     render() {
         return (
-            <div id="map" style={{width: '100%', height: '300px', background: 'grey'}}>
+            <div id="map" style={{width: '100%', height: '400px', background: 'grey' }}>
+                <button onClick={this.props.onLoad}>
+                    Click me!
+                </button>
             </div>
+
         );
     }
 }
