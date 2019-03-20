@@ -1,28 +1,32 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
+import Map from './components/map';
 
 class App extends Component {
-  render() {
-    return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
-      </div>
-    );
-  }
+
+    constructor(props) {
+        super(props);
+        this.state = {
+            app_id: process.env.HERE_MAPS_APP_ID,
+            app_code: process.env.HERE_MAPS_APP_CODE,
+            longitude: '',
+            latitude: '',
+        }
+    }
+
+    render() {
+        return (
+            <div className="App">
+                <Map
+                    app_code={this.state.app_code}
+                    app_id={this.state.app_id}
+                    longitude={this.state.longitude}
+                    latitude={this.state.latitude}
+                />
+            </div>
+        );
+    }
 }
 
 export default App;
