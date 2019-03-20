@@ -16,6 +16,21 @@ class App extends Component {
     }
 
     render() {
+
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(
+                (position) => {
+                    this.setState({
+                        latitude: position.coords.latitude,
+                        longitude: position.coords.longitude
+                    });
+                },
+                (error) => this.setState(
+                    {error: error.message}
+                )
+            );
+        }
+
         return (
             <div className="App">
                 <Map
@@ -23,6 +38,7 @@ class App extends Component {
                     app_id={this.state.app_id}
                     longitude={this.state.longitude}
                     latitude={this.state.latitude}
+
                 />
             </div>
         );
