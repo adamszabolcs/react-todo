@@ -1,26 +1,38 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
-import Map from './components/map';
+import Map from './components/map.js';
 
 class App extends Component {
-
     constructor(props) {
         super(props);
+
         this.state = {
-            app_id: process.env.HERE_MAPS_APP_ID,
-            app_code: process.env.HERE_MAPS_APP_CODE,
-            longitude: '',
+            center: {
+                lat: '',
+                lng: '',
+            },
+            app_id: process.env.REACT_APP_HERE_APP_ID,
+            app_code: process.env.REACT_APP_HERE_APP_CODE,
             latitude: '',
-        }
+            longitude: '',
+        };
+
     }
 
-    render() {
+    componentDidMount() {
+        this.showMap();
+    }
 
+    showMap = () => {
         if (navigator.geolocation) {
             navigator.geolocation.getCurrentPosition(
                 (position) => {
                     this.setState({
+                        center: {
+                            lat: position.coords.latitude,
+                            lng: position.coords.longitude
+                        },
                         latitude: position.coords.latitude,
                         longitude: position.coords.longitude
                     });
@@ -29,16 +41,24 @@ class App extends Component {
                     {error: error.message}
                 )
             );
+        } else {
+            return ("Please allow to us to know your location");
+
         }
+    };
+
+    render() {
 
         return (
-            <div className="App">
+            <div className="App" id="mapplace">
                 <Map
-                    app_code={this.state.app_code}
                     app_id={this.state.app_id}
-                    longitude={this.state.longitude}
-                    latitude={this.state.latitude}
-
+                    app_code={this.state.app_code}
+                    lat={this.state.latitude}
+                    lng={this.state.longitude}
+                    center={this.state.center}
+                    onLoad={this.state.showMap}
+                    zoom="12"
                 />
             </div>
         );
