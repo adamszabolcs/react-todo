@@ -25,8 +25,8 @@ class Map extends Component {
 
 
         this.map = new window.H.Map(container, layer.normal.map, {
-            center: this.state.center,
             zoom: this.state.zoom,
+            center: this.state.center,
         });
 
         var events = new window.H.mapevents.MapEvents(this.map);
@@ -39,9 +39,6 @@ class Map extends Component {
     render() {
         return (
             <div id="map" style={{width: '100%', height: '400px', background: 'grey' }}>
-                <button onClick={this.props.onLoad}>
-                    Click me!
-                </button>
             </div>
 
         );
