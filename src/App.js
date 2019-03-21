@@ -42,7 +42,7 @@ class App extends Component {
                 )
             );
         } else {
-            return ("Please allow to us to know your location");
+            return null;
 
         }
     };

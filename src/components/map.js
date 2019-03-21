@@ -33,14 +33,22 @@ class Map extends Component {
         // eslint-disable-next-line
         var behavior = new window.H.mapevents.Behavior(events);
         // eslint-disable-next-line
-        var ui = new window.H.ui.UI.createDefault(this.map, layer)
+        var ui = new window.H.ui.UI.createDefault(this.map, layer);
+        this.addMarker();
+    }
+
+    addMarker() {
+        var icon = new window.H.map.Icon('pin.png'),
+            coords = {lat: this.state.center.lat, lng: this.state.center.lng},
+            marker = new window.H.map.Marker(coords, {icon: icon});
+
+        this.map.addObject(marker);
     }
 
     render() {
         return (
             <div id="map" style={{width: '100%', height: '400px', background: 'grey' }}>
             </div>
-
         );
     }
 }
