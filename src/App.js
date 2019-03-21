@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import logo from './logo.svg';
 import './App.css';
 import Map from './components/map.js';
@@ -49,19 +49,27 @@ class App extends Component {
 
     render() {
 
-        return (
-            <div className="App" id="mapplace">
-                <Map
-                    app_id={this.state.app_id}
-                    app_code={this.state.app_code}
-                    lat={this.state.latitude}
-                    lng={this.state.longitude}
-                    center={this.state.center}
-                    onLoad={this.state.showMap}
-                    zoom="12"
-                />
-            </div>
-        );
+        if (this.state.center.lat !== '') {
+
+            return (
+                <div className="App" id="mapplace">
+                    <Map
+                        app_id={this.state.app_id}
+                        app_code={this.state.app_code}
+                        lat={this.state.latitude}
+                        lng={this.state.longitude}
+                        center={this.state.center}
+                        zoom="16"
+                    />
+                </div>
+            );
+        } else {
+            return (
+                <div className="App">
+                    <h4>Please allow location to use this website properly!</h4>
+                </div>
+            )
+        }
     }
 }
 
