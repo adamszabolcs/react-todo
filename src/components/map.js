@@ -13,7 +13,8 @@ class Map extends Component {
             app_code: props.app_code,
             center: props.center,
             zoom: props.zoom,
-        }
+        };
+
     }
 
     componentDidMount() {
@@ -21,8 +22,6 @@ class Map extends Component {
 
         var layer = this.platform.createDefaultLayers();
         var container = document.getElementById('map');
-
-
 
         this.map = new window.H.Map(container, layer.normal.map, {
             zoom: this.state.zoom,
@@ -34,10 +33,10 @@ class Map extends Component {
         var behavior = new window.H.mapevents.Behavior(events);
         // eslint-disable-next-line
         var ui = new window.H.ui.UI.createDefault(this.map, layer);
-        this.addMarker();
+        this.addUserPosition();
     }
 
-    addMarker() {
+    addUserPosition() {
         var icon = new window.H.map.Icon('pin.png'),
             coords = {lat: this.state.center.lat, lng: this.state.center.lng},
             marker = new window.H.map.Marker(coords, {icon: icon});
@@ -45,9 +44,12 @@ class Map extends Component {
         this.map.addObject(marker);
     }
 
+
+
     render() {
         return (
             <div id="map" style={{width: '100%', height: '400px', background: 'grey' }}>
+
             </div>
         );
     }
