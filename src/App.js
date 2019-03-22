@@ -1,5 +1,4 @@
 import React, {Component} from 'react';
-import logo from './logo.svg';
 import './App.css';
 import Map from './components/map.js';
 
@@ -12,8 +11,8 @@ class App extends Component {
                 lat: '',
                 lng: '',
             },
-            app_id: process.env.REACT_APP_HERE_APP_ID,
-            app_code: process.env.REACT_APP_HERE_APP_CODE,
+            app_id: process.env.REACT_APP_MAPS_APP_ID,
+            app_code: process.env.REACT_APP_MAPS_APP_CODE,
             latitude: '',
             longitude: '',
         };
